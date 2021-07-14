@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>两个方法</h4>
+</body>
+</html>
+<script>
+    function Product(name,price) {
+        this.name = name
+        this.price = price
+    }
+    function Food(name,price) {
+        Product.call(this,name,price)
+        this.category = 'food'
+    }
+    function Toy(name,price) {
+        Product.call(this,name,price)
+        this.category = 'toy'
+    }
+
+    var sdata = 'wiiwiw'
+    function display() {
+        console.log('hihi is %s',this.sdata)
+    }
+    this.display()
+    display.call()  
+
+        Function.prototype.myCall = function(context,...args) {
+            let ctx = context || window
+            //将当前被调用的方法定义在cxt.func上，为了能以对象调用形式绑定this
+            //新建唯一symbol，避免重复
+            let func = Symbol()
+            ctx[func] = this
+            args = args ? args : []
+            //以对象形式调用func,此时this 指向cxt,也就是传入的需要绑定this指向
+            const res = args.length > 0 ? ctx[func] (args) :cxt[func]();
+            //删除该方法，不然会对传入对象造成污染
+            delete cxt[func]
+            return this
+        }
+        //手写bind
+       Function.prototype.myBind = function() {
+           const args = Array.prototype.slice.call(arguments)
+           const t = args.shift()
+           const self = this
+           return function() {
+               return   self.apply(t,args)
+           }
+       }
+       //手写深拷贝
+       function deepClone(obj = {}) {
+           if(typeof obj !== 'object' || obj == null) {
+               return obj
+           }
+
+           let result
+           if (obj instanceof Array) {
+               result = []
+           }else {
+               result = {}
+           }
+           for(let key in obj) {
+               if(obj.hasOwnProperty(key)) {
+                   result[key] = deepClone(obj[key])
+               }
+           }
+           return result
+       }
+    
+</script>

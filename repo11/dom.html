@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const div1 = document.getElementById('div1')//元素
+    const divList = document.getElementsByTagName('div')//集合
+
+    const pList = document.querySelectorAll('p')//集合
+    const p = pList[0]
+    p.style.width = '100px';
+    p.className = 'p111'
+
+    p.setAttribute('data-name','mooccc')
+    console.log(p.getAttribute)
+
+    p.setAttribute('style','font-size:50px')
+
+
+    const div1 = document.getElementById('div1')
+    //新建节点
+    const p1 = document.createElement('p')
+    p1.innerHTML = 'this is p1'
+    //插入节点
+    div1.appendChild(p1)
+
+    //移动节点
+    const p1 = document.getElementById('p1')
+    div2.appendChild(p1)
+    //
+    div1.parentNode
+    div1.childNodes
+    //删除
+    div1.removeChild
+
+    //缓存查询结果
+    const pList = document.getElementsByTagName('p')
+    const length = pList.length
+    for(let i=0; i<length; i++) {
+        //缓存length，只进行一次DOM查询
+    }
+
+    //频繁操作改为一次操作
+    const listNode = document.getElementById('list')
+    //创建一个文档片段，此时还没插入DOM树（只是对JS变量操作，还没渲染）
+    const frag = document.createDocumentFragment()
+
+    //执行插入
+    for(let i=0; i<10; i++) {
+        const li = document.createElement('li') 
+        li.innerHTML = 'List item' + x
+        frag.appendChild(li)
+    }
+    //都完成之后，在插入DOM树
+    listNode.appendChild(frag)
+
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>--------------------</h2>
+</body>
+<script>
+    this.x = 5
+    const module = {
+        x:233,
+        getX:function() {
+            return this.x
+        }
+    }
+    console.log(module.getX())//233
+    const fn1 = module.getX;
+    console.log(fn1())//5   因为函数是在全局作用域中调用的
+    const fn2 = fn1.bind(module);
+    console.log(fn2());//233
+    //----------------
+    Function.prototype.Mybind = function() {
+        //
+        const args = Array.prototype.call(arguments)//arguments 是一个对应于传递给函数的参数的类数组对象。
+        //获取this
+        const t = args.shift();
+        
+        const self = this
+
+        return function() {
+            return self.apply(t,args)
+        }
+    }
+</script>
+</html>
